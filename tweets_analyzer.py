@@ -263,15 +263,15 @@ def export_write():
 
 def print_stats(dataset, top=5):
     """ Displays top values by order """
-    sum = numpy.sum(list(dataset.values()))
+    statSum = numpy.sum(list(dataset.values()))
     i = 0
-    if sum:
+    if statSum:
         sorted_keys = sorted(dataset, key=dataset.get, reverse=True)
         max_len_key = max([len(x) for x in sorted_keys][:top])  # use to adjust column width
         for k in sorted_keys:
             try:
                 cprint(("- \033[1m{:<%d}\033[0m {:>6} {:<4}" % max_len_key)
-                      .format(k, dataset[k], "(%d%%)" % ((float(dataset[k]) / sum) * 100)))
+                      .format(k, dataset[k], "(%d%%)" % ((float(dataset[k]) / statSum) * 100)))
             except:
                 import ipdb
                 ipdb.set_trace()
